@@ -110,8 +110,8 @@ def check_and_install(controller_ip, node_id, proto):
         print(response.status_code)
 
 def stabilize(controller_ip):
-    try:
-        while True:
+    while True:
+        try:
             pattern = INVENTORY_URL
             url = pattern.format(controller_ip, OP)
 
@@ -124,10 +124,10 @@ def stabilize(controller_ip):
                     check_and_install(controller_ip, node_id, LLDP)
                     check_and_install(controller_ip, node_id, ARP)
             time.sleep(TIME_INTERVAL)
-    except KeyboardInterrupt as e:
-        return
-    except Exception as e:
-        raise e
+        except KeyboardInterrupt as e:
+            break
+        except Exception as e:
+            continue
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
