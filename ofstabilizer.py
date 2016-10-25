@@ -31,6 +31,8 @@ FLOW_RULE_TEMPLATE='''
             }
         },
         \"priority\": %d,
+        \"idle-timeout\": 0,
+        \"hard-timeout\": 0,
         \"table_id\": 0,
         \"instructions\": {
             \"instruction\": [
